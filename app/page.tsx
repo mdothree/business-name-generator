@@ -45,8 +45,9 @@ export default function Home() {
           <li>Logo concepts included</li>
         </ul>
         <PayButton 
+          paymentLink="https://buy.stripe.com/4gM7sK38QfCFd0E5VN8k803"
           priceId="price_businessnames_premium" 
-          label="Get Premium Report - $29.99"
+          label="Get Premium Report - $4.99"
         />
       </section>
 

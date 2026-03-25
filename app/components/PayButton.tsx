@@ -1,31 +1,23 @@
 'use client';
 
-import { stripePromise } from '../lib/stripe';
-
 interface PayButtonProps {
+  paymentLink?: string;
   priceId?: string;
   label?: string;
 }
 
 export default function PayButton({
-  priceId = 'price_businessnames_basic',
-  label = 'Get Premium Names - $19.99'
+  paymentLink = 'https://buy.stripe.com/4gM7sK38QfCFd0E5VN8k803',
+  priceId,
+  label = 'Get Premium - $4.99'
 }: PayButtonProps) {
-  const handleCheckout = async () => {
-    const stripe = await stripePromise;
-    if (!stripe) return;
-
-    await stripe.redirectToCheckout({
-      lineItems: [{ price: priceId, quantity: 1 }],
-      mode: 'payment',
-      successUrl: `${window.location.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancelUrl: `${window.location.origin}/cancel`,
-    });
+  const handleClick = () => {
+    window.location.href = paymentLink;
   };
 
   return (
     <button
-      onClick={handleCheckout}
+      onClick={handleClick}
       style={{
         backgroundColor: '#635bff',
         color: 'white',
